@@ -4,15 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes =   require('./routes/index');
+var users =    require('./routes/users');
+var uploaded = require('./routes/uploaded')
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -21,9 +23,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(multer({dest: 'uploads'})); // dest is not necessary if you are happy with the default: /tmp
+app.use(multer({dest:__dirname+'/uploads/'}).any());
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/uploaded', uploaded);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

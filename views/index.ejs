@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/vendor/dist/basic.css">
+        <link rel="stylesheet" href="/vendor/dist/dropzone.css">
+        <title>Regions and Numbers</title>
+    </head>
+    <body>
+      <h1>Regions and Numbers</h1>
+
+      <!-- <form action="/" class="dropzone" id="my-awesome-dropzone"></form>
+
+      <form method="post" action="/" class="dropzone" id="dropzone-example"><div class="fallback"><input name="file" type="file" multiple /></div></form> -->
+
+      <form method="post" action="/" class="dropzone" id="my-awesome-dropzone">
+          <div class="fallback">
+              <input name="file" type="file" multiple />
+          </div>
+      </form>
+
+      <h2> <%= title%> </h2>
+      <p>Results will show up here</p>
+      <!-- <h5 class="error-msg"><%= msg%></h5> -->
+      <div class="future"></div>
+
+      <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+      <script type="text/javascript" src="/vendor/dist/dropzone.js"></script>
+      <script type="text/javascript" src="/javascripts/ran.js"></script>
+    </body>
+</html>
