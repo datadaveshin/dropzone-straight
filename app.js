@@ -25,6 +25,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(multer({dest: 'uploads'})); // dest is not necessary if you are happy with the default: /tmp
 app.use(multer({dest:__dirname+'/uploads/'}).any());
+console.log("\n\n\n\##################");
+console.log('\nmulter:\n', multer)
+// console.log('\nmulter.options:\n', multer.options)
 
 app.use('/', routes);
 app.use('/users', users);

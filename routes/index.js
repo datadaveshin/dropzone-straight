@@ -25,8 +25,8 @@ router.post('/', function (req, res) {
         console.log(req.files)
         // console.log("\nthe req.files.file:")
         // console.log(req.files.file)
-        console.log("\nthe res.body:")
-        console.log(res.body)
+        console.log("\nthe res:")
+        console.log(res)
     }
     // res.sendStatus(200);
 
@@ -35,8 +35,9 @@ router.post('/', function (req, res) {
     // res.redirect(200, '/uploaded')
     // res.render('index', {msg: "hi"})
     // res.render('index', { title: 'Done' });
-    var responseText = req.files[0].originalname
-    res.send(responseText)
+    // var responseText = req.files[0].originalname
+    var responseText = req.files[0].filename + " and " + req.files[0].originalname + "!"
+    res.json(responseText)
     // res.send("Upload Complete")
 });
 
