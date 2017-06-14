@@ -13,6 +13,11 @@
         addRemoveLinks: true,
 
         init: function() {
+
+            // DAVE!!!!
+            // PUT THIS WHOLE THING IN A PROMISE!!!!!!!!!!!!
+            // THEN WHEN IT COMES BACK, MAKE THE BUTTON OR DO SOMETHING
+
             this.on("success", function(file, responseText, files) {
                 console.log("\n\nSUCCESS! ~~~~~~~~~~~~~>")
               // Handle the responseText here. For example, add the text to the preview element:
@@ -26,91 +31,40 @@
                 fileList.push(file)
                 // this.removeFile(file)
                 // $('.future').append('<h6>' + responseText + '</h6>')
-            });
+            })
 
-
-            this.on("queuecomplete", function() {
+            .on("queuecomplete", function() {
                 // $('.future').append('<input type="button" value="test" id="target"/>')
-                $('.future').append('<input type="button" value="Submit" id="target"/>')
+                $('.future').append('<form action="/process" method="post"><input type="button" value="Analyze" id="target"/></form>')
                 var lastFileLoaded = fileList[fileList.length - 1].name
                 console.log("Last File Upload: ", lastFileLoaded)
                 console.log("the filz", this.getAcceptedFiles())
             });
 
         }
-
-
-        // init: function() {
-    	// 			var totalFiles = 0,
-    	// 				completeFiles = 0;
-    	// 			this.on("addedfile", function(file){
-    	// 				totalFiles += 1;
-    	// 			});
-    	// 			this.on("removed file", function(file){
-    	// 				totalFiles -= 1;
-    	// 			});
-    	// 			this.on("complete", function(file) {
-    	// 				completeFiles += 1;
-    	// 				if (completeFiles === totalFiles){
-    	// 					// $.get("/", function(data){
-        //                         // var jsonData = JSON.stringify(data.trim())
-        //                         console.log("HEY HEY IM DONE")
-        //                         $('h1').html("What is a doing a science?!!!")
-        //                         // $('p').html(jsonData)
-        //
-        //
-    	// 						// var jsonData = JSON.parse(data.trim()); //a fix to remove white space shit
-        //
-    	// 						//define the filelist
-    	// 						// filelist = fileList();
-        //
-    	// 						//set high and low limits for calculating color from Vr value
-    	// 						// setLowHigh();
-        //
-        //
-    	// 						//list sorted files next to heatmap
-    	// 						// listSortedFiles();
-        //
-    	// 						//clear the table-container before creating new table
-    	// 						//incase files were already loaded
-    	// 						$("#table-container").empty();
-        //
-    	// 						//create heatmap
-    	// 						// d3FlipTable();
-        //
-    	// 						//show operations and force-plot-button
-        //
-    	// 						$("#force-plot-button, #operations-main, #svd-main").fadeIn("slow");
-    	// 					// });
-    	// 					//resize thumbnails
-    	// 					$(".dropzone").css("padding", "0px");
-    	// 					$(".dz-preview").css("height","65px");
-    	// 					$(".dz-filename").css("height", "30px");
-    	// 					$(".dz-details").css("height", "30px");
-        //
-    	// 					//resize entire dropzone
-    	// 					// $(".dropzone").css("min-height", "100px").css("max-height", "100px");
-        //
-    	// 					//show total container
-    	// 					// $("#total-container").show();
-    	// 					// $("#dropzone-title").show();
-    	// 				};
-     //   				});
-    	// 		}
-
     }
 
-// $(document).ready(function(){
-
-    // $('#target').click(function(){
-    //     alert("JQuery Running!");
-    // });
-
     $(document).on('click', '#target', function() {
-        alert("JQuery Running!");
+        // alert("JQuery Running!");
         console.log(fileList)
-        alert( fileList );
+        // alert( fileList );
+        sendRequest(fileList.length, fileList)
     });
+
+    function sendRequest(depLocation, arrLocation) {
+        console.log("\n\n\n LOCATIONS !!!!!", depLocation, arrLocation);
+        let departureObj = {
+            url: `http://localhost:3003/process/`,
+            method: "GET",
+            success: successRouteAll
+        };
+        // Start the AJAX request
+        $.ajax(departureObj);
+    };
+
+    function successRouteAll(data) {
+        $('.future').append('<h6>' + data + '</h6>')
+    }
 
 
     $("#mcfly").click(function() {
@@ -120,9 +74,4 @@
       alert( fileList );
     });
 
-// });
-
-
-// Dropzone.on("complete", function(file) {
-//    window.location.href = "http://stackoverflow.com";
 // });

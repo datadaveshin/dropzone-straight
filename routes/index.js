@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Sibyls', msg: "yo" });
 });
 
-router.post('/', function (req, res) {
+router.post('/uploading', function (req, res) {
     //console.log(req.files);
 
     var files = req.files.file;
@@ -25,8 +25,8 @@ router.post('/', function (req, res) {
         console.log(req.files)
         // console.log("\nthe req.files.file:")
         // console.log(req.files.file)
-        console.log("\nthe res:")
-        console.log(res)
+        // console.log("\nthe res:")
+        // console.log(res)
     }
     // res.sendStatus(200);
 
@@ -39,6 +39,13 @@ router.post('/', function (req, res) {
     var responseText = req.files[0].filename + " and " + req.files[0].originalname + "!"
     res.json(responseText)
     // res.send("Upload Complete")
+});
+
+router.get('/process', function (req, res) {
+    console.log("fuckin' worked yo yo");
+
+    res.json("processed")
+
 });
 
 module.exports = router;
