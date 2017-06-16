@@ -4,6 +4,19 @@
         uploadMultiple: false,
         maxFiles: 100,
         maxFilesize: 0.1,
+
+        /* *
+        Here I was trying to upload multiple files according to
+        https://stackoverflow.com/questions/28021984/upload-multiple-files-in-one-request-dropzone-sending-two-requests
+        but, I need to make a programatic dropzone and a button to handle
+        the upload - making two button clicks
+        */
+        
+        // paramName: "files",
+        // parallelUploads: 10,
+        // uploadMultiple: true,
+        // autoProcessQueue: false,
+
         // acceptedFiles: 'application/octet-stream,text/plain,.dat',
         // acceptedFiles: 'application/octet-stream',
         // acceptedFiles: 'application/octet-stream,.dat',
@@ -36,8 +49,8 @@
             .on("queuecomplete", function() {
                 // $('.future').append('<input type="button" value="test" id="target"/>')
                 $('.future').append('<form action="/process" method="post"><input type="button" value="Analyze" id="target"/></form>')
-                var lastFileLoaded = fileList[fileList.length - 1].name
-                console.log("Last File Upload: ", lastFileLoaded)
+                // var lastFileLoaded = fileList[fileList.length - 1].name
+                // console.log("Last File Upload: ", lastFileLoaded)
                 console.log("the filz", this.getAcceptedFiles())
             });
 

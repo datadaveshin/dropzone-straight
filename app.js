@@ -4,7 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var multer = require('multer');
+
+// var multer = require('multer');
+// Here I was trying to setup multer options with another variable
+// var upload = multer({dest:__dirname+'/uploads/'});
 
 var routes =   require('./routes/index');
 var users =    require('./routes/users');
@@ -23,10 +26,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(multer({dest: 'uploads'})); // dest is not necessary if you are happy with the default: /tmp
-app.use(multer({dest:__dirname+'/uploads/'}).any());
-console.log("\n\n\n\##################");
-console.log('\nmulter:\n', multer)
+
+// HERE I am trying to use the var upload to handle the options object
+// app.use(multer({dest:__dirname+'/uploads/'}).any());
+// app.use(upload.any());
+
+
+// console.log("\n\n\n\##################");
+// console.log('\nmulter:\n', multer)
 // console.log('\nmulter.options:\n', multer.options)
 
 app.use('/', routes);
@@ -64,5 +71,11 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
+// var uploadDestination = __dirname+'/uploads/'
+// var uploadDestination = '/uploads/';
+var uploadDestination = 'hi';
+// module.exports = {app: app,
+                //   uploadDestination: uploadDestination};
 module.exports = app;
+// module.exports.uploadDestination = 'hi';
+// module.exports.uploadDestination = uploadDestination;

@@ -5,6 +5,8 @@
  */
 
 var app = require('../app');
+// var theDestination = require('../routes/users').uploadDestination;
+// console.log("theDestination2:", theDestination)
 var debug = require('debug')('dropzone-straight:server');
 var http = require('http');
 
